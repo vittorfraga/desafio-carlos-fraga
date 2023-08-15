@@ -1,13 +1,20 @@
+import { cardapio } from "./cardapioDB";
+
 class Pedido {
   constructor() {
     this.itens = [];
+    this.cardapio = cardapio;
   }
 
   adicionarItem(item) {
     this.itens.push(item);
   }
 
-  validarPedido(cardapio) {
+  validarCodigoItem(codigo) {
+    return this.cardapio.some((item) => item.codigo === codigo);
+  }
+
+  validarPedido() {
     const quantidadePorItem = {};
     let temQueijo = false;
     let temChantily = false;
@@ -18,7 +25,7 @@ class Pedido {
     this.itens.forEach((item) => {
       const [codigo, quantidade] = item.split(",");
 
-      if (!cardapio.validarCodigoItem(codigo)) {
+      if (!this.validarCodigoItem(codigo)) {
         mensagemErro = "Item inválido!";
         return;
       }
@@ -49,12 +56,6 @@ class Pedido {
 
     if (this.itens.length === 0) {
       return "Não há itens no carrinho de compra!";
-    }
-
-    for (const codigo in quantidadePorItem) {
-      if (quantidadePorItem[codigo] < 0) {
-        return "Quantidade inválida!";
-      }
     }
 
     return true;
