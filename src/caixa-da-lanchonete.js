@@ -43,7 +43,7 @@ class CaixaDaLanchonete {
 
     let valorDoPedido = 0;
 
-    pedido.itens.forEach((item) => {
+    pedido.itensDoPedido.forEach((item) => {
       const [codigo, quantidade] = item.split(",");
       const itemCardapio = this.cardapio.find(
         (itemCardapio) => itemCardapio.codigo === codigo

@@ -9,7 +9,7 @@ describe("Pedido", () => {
 
   it("deve adicionar um item corretamente", () => {
     pedido.adicionarItem("cafe,2");
-    expect(pedido.itens).toEqual(["cafe,2"]);
+    expect(pedido.itensDoPedido).toEqual(["cafe,2"]);
   });
 
   it("deve validar o código do item corretamente", () => {
