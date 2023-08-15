@@ -20,14 +20,12 @@ class Pedido {
     let temChantily = false;
     let temSanduiche = false;
     let temCafe = false;
-    let mensagemErro = "";
 
-    this.itens.forEach((item) => {
+    for (const item of this.itens) {
       const [codigo, quantidade] = item.split(",");
 
       if (!this.validarCodigoItem(codigo)) {
-        mensagemErro = "Item inválido!";
-        return;
+        return "Item inválido!";
       }
 
       if (codigo === "queijo") temQueijo = true;
@@ -42,12 +40,8 @@ class Pedido {
       quantidadePorItem[codigo] += parseInt(quantidade);
 
       if (parseInt(quantidade) === 0) {
-        mensagemErro = "Quantidade inválida!";
+        return "Quantidade inválida!";
       }
-    });
-
-    if (mensagemErro) {
-      return mensagemErro;
     }
 
     if ((temQueijo && !temSanduiche) || (temChantily && !temCafe)) {
