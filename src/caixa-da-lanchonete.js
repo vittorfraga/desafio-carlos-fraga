@@ -14,13 +14,13 @@ class CaixaDaLanchonete {
     return true;
   }
 
-  calcularJuros(valorTotal, formaDePagamento) {
+  calcularJuros(valorDoPedido, formaDePagamento) {
     if (formaDePagamento === "dinheiro") {
-      return valorTotal * 0.95;
+      return valorDoPedido * 0.95;
     } else if (formaDePagamento === "credito") {
-      return valorTotal * 1.03;
+      return valorDoPedido * 1.03;
     }
-    return valorTotal;
+    return valorDoPedido;
   }
 
   calcularValorDaCompra(formaDePagamento, itens) {
